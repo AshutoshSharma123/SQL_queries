@@ -692,4 +692,17 @@ SMITH is a CLERK and gets salary 2000
 
 
 
+SUBQUERIES
+============================================================================
+
+
+1. write a salary to display whose salary is more than that of blake.
+
+
+	SELECT * 
+	FROM EMP
+	WHERE SAL>(SELECT SAL FROM EMP
+	WHERE ENAME = 'blake');
+
+
 
