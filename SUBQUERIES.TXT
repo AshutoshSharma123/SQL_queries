@@ -1,6 +1,10 @@
 
     This is the table of contents which has been used to perform queries.
 
+
+
+    EMP TABLE
+
      EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
 ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
       7369 SMITH      CLERK           7902 17-DEC-80        800                    20
@@ -17,6 +21,19 @@
       7900 JAMES      CLERK           7698 03-DEC-81        950                    30
       7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
       7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+
+DEPT TABLE
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
+
+
+
 
 
 SUBQUERIES
@@ -64,3 +81,63 @@ SUBQUERIES
     WHERE SAL > (SELECT SAL FROM EMP WHERE ENAME = 'SMITH') AND DEPTNO = (SELECT DEPTNO FROM EMP WHERE ENAME = 'MARTIN');
 
 6. WAQTD EMPLOYEE WHO WERE HIRED AFTER SCOTT AND HAVE SALARY MORE THAN ALLENS SALARY.
+    
+    SELECT *
+    FROM EMP
+    WHERE HIREDATE > (SELECT HIREDATE FROM EMP WHERE ENAME = 'SCOTT')
+    AND SAL > (SELECT SAL FROM EMP WHERE ENAME = 'ALLEN');
+
+
+7. Write a query to display location of smith's DEPARTMENT
+
+
+    select  LOC
+    FROM  DEPT
+    WHERE DEPTNO =(SELECT DEPTNO FROM EMP WHERE ENAME='SMITH');
+
+
+8. DETAILS OF EMP WHO ARE WORKING IN ACCOUNTIG DEPARTMENT
+
+    SELECT * FROM EMP
+    WHERE DEPTNO=(SELECT DEPTNO FROM DEPT WHERE  DEPTNO =10);
+
+
+
+**********************************************************************************************************************
+speical operators are used because next queries are not single row SUBQUERIES
+do to tackle the problem we are using speical operators like the (IN,NOT IN , ALL , EXISTS ,NOT EXISTS)
+**********************************************************************************************************************
+
+9. DETAILS OF EMP WHO ARE WORKINF IN ACCOUNTING OR RESEARCH DEPARTMENT.
+
+
+    SELECT * FROM EMP
+    WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE  DNAME='ACCOUNTING' OR DNAME='RESEARCH');
+
+
+
+10. DETAILS OF THE EMPLOYEES WHO ARE WORKIN  IN CHICAGO OR DALLAS.
+
+    SELECT * FROM EMP
+    WHERE DEPTNO IN (SELECT DEPTNO FROM DEPT WHERE LOC = 'CHICAGO' OR LOC = 'DALLAS');
+
+
+
+11.DEPT NAME OF THE EMP WHO ARE GETTING SALARY MORE THAN SMITH.
+
+    ELECT DNAME FROM DEPT
+    WHERE DEPTNO IN
+    (SELECT DEPTNO FROM EMP
+    WHERE SAL>
+    (SELECT SAL 
+    FROM EMP WHERE ENAME IN('SMITH')));
+
+
+12. SELECT DEPT DETAILS IF THE EMP IS WORKING IN SAME DEPT AS ALLEN AND GETIING MORE SALARY THAN SMITH.
+
+
+    SELECT * FROM DEPT 
+    WHERE DEPTNO = (SELECT DEPTNO
+                    FROM EMP 
+                    WHERE ENAME IN('ALLEN') AND SAL > (SELECT SAL FROM EMP WHERE ENAME IN('SMITH'))) ;
+

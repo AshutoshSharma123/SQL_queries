@@ -3,8 +3,7 @@ Email:   aashusharma375@gmail.com
 
 
 
-
-This is the table of contents which has been used to perform queries.
+    EMP TABLE
 
      EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
 ---------- ---------- --------- ---------- --------- ---------- ---------- ----------
@@ -22,6 +21,16 @@ This is the table of contents which has been used to perform queries.
       7900 JAMES      CLERK           7698 03-DEC-81        950                    30
       7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
       7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+
+DEPT TABLE
+
+    DEPTNO DNAME          LOC
+---------- -------------- -------------
+        10 ACCOUNTING     NEW YORK
+        20 RESEARCH       DALLAS
+        30 SALES          CHICAGO
+        40 OPERATIONS     BOSTON
 
 
 
@@ -692,17 +701,6 @@ SMITH is a CLERK and gets salary 2000
 
 
 
-SUBQUERIES
-============================================================================
-
-
-1. write a salary to display whose salary is more than that of blake.
-
-
-	SELECT * 
-	FROM EMP
-	WHERE SAL>(SELECT SAL FROM EMP
-	WHERE ENAME = 'blake');
 
 
 
