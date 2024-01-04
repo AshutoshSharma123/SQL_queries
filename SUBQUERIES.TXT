@@ -141,3 +141,59 @@ do to tackle the problem we are using speical operators like the (IN,NOT IN , AL
                     FROM EMP 
                     WHERE ENAME IN('ALLEN') AND SAL > (SELECT SAL FROM EMP WHERE ENAME IN('SMITH'))) ;
 
+13. WAQTD DEPT NAME AND LOC OF THE EMP IF THE EMP IS HIRED AFTER ALLEN.
+      
+        SELECT DNAME,LOC
+        FROM DEPT
+        WHERE DEPTNO IN (
+            (SELECT DEPTNO FROM EMP 
+            WHERE HIREDATE >(SELECT HIREDATE
+                                from EMP 
+                                WHERE ENAME = 'ALLEN'));
+
+
+14. WAQTD DETAILS OF EMP WHP ARE EARNING GETTING SAME SALARY.
+            
+            SELECT * 
+            FROM EMP 
+            WHERE SAL IN (SELECT SAL FROM
+            EMP
+            GROUP BY SAL
+            HAVING COUNT(*)>1);
+
+15. WAQTD DISPLAY EMP WHO ARE GETIING IN SAME DEPT .
+
+            
+
+
+            SELECT * 
+            from EMP 
+            WHERE SAL IN ( SELECT SAL FROM EMP
+                            GROUP BY SAL HAVING COUNT(*)>1) AND DEPTNO IN (SELECT DEPTNO FROM EMP 
+                            GROUP BY DEPTNO HAVING COUNT(*)>1);
+
+16. DISPLAY MAXIMUM SALARY GIVEN TO EMP
+
+        SELECT MAX(SAL) FROM EMP;
+
+17. DISPLAY EMP DETAILS WHO ARE GETIING MAXIMUM SALARY
+
+    SELECT * FROM EMP 
+    WHERE  SAL=(SELECT MAX(SAL) FROM EMP);
+
+
+
+
+ASSIGNMENT
+********************************
+
+18. EMP WHO IS GETTING 2ND MAX SALARY AND WHO IS GETTING 2ND MINIMUM
+
+
+
+19. DEPTNAME AND LOC WHO IS GETTING 3RD MIN SALARY
+
+
+
+
+
