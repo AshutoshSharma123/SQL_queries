@@ -52,10 +52,63 @@ ROWNUM is one of the vital Numeric/Math functions of Oracle. It is used to get a
     FROM EMP
     WHERE ROWNUM <= 3;
 
+
+
     SELECT * 
     FROM EMP
     WHERE ROWNUM <= 10;
 
-        SELECT * 
-    FROM EMP
-    WHERE ROWNUM = 1;
+
+***************************
+
+
+
+         SELECT * 
+         FROM EMP
+         WHERE ROWNUM = 2;
+
+
+         'if we want the 2nd line of record this will not       work it will shows "no rows selected" because the ROWNUM workd over dynamic assigning to the rows and colums... SO ROWNUM SLno is used i.e ROWNUM AS SERIALNUMBER'
+
+
+ 2.       SELECT * FROM
+         (select ROWNUM SLno ,emp .* 
+         from Emp) where SLno=2;
+
+3.  // FOR 5TH RECORD
+
+                 SELECT * FROM
+         (select ROWNUM SLno ,emp .* 
+         from Emp) where SLno=5;
+
+4. // for last 5 records
+
+        SELECT * FROM
+         (select ROWNUM SLno ,emp .* 
+         from Emp) where SLno>=10;
+
+
+//but if we dont know the total no. of records we cant print last 5 records
+    
+    so the better way is like this:
+
+            select *
+            from (select rownum SLNO ,EMP.*
+            from emp)
+            where slno>(select count(*)-5
+                            from emp);
+
+
+
+
+                        *****************************************************
+                            (select count(*)-5
+                            from emp); this is calculating the last numbers 
+                        *****************************************************
+
+5.for last 10 records   
+             select *
+            from (select rownum SLNO ,EMP.*
+            from emp)
+            where slno>(select count(*)-10
+                            from emp);

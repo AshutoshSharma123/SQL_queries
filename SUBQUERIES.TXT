@@ -49,14 +49,14 @@ SUBQUERIES
 	WHERE ENAME = 'BLAKE');
 
 
-2. write a query to display the job and name of the employee that has same role as of employee named Turner.
+2.write a query to display the job and name of the employee that has same role as of employee named Turner.
 
 
     select ENAME , JOB, SAL
     FROM EMP 
     WHERE JOB = ( SELECT JOB FROM EMP
     WHERE ENAME ='TURNER');
-
+ 
 
 
 3. write a query to display the job and name of the employee that ARE WORKING IN THE DEPARTMENT 10 TO 30 AND HAVE SALARY MORE THAN MILLER .
