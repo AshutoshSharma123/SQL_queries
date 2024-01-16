@@ -110,3 +110,27 @@ TYPES OF JOINS
     This query performs a natural join on the common column(s), in this case, DEPTNO, and returns rows where the values match.
 
 
+Some queries
+---------------------
+
+    
+
+
+
+    1. WAQTD THE CROSS PRODUCT OF EMP AND DEPT TABLE
+
+            select * from emp cross join dept;
+
+    2.A query to display EMP name and his department name
+
+
+        SELECT ENAME ,DNAME
+        FROM EMP INNER JOIN DEPT ON EMP.DEPTNO=DEPT.DEPTNO;
+
+
+    3. A QUERY FOR THE EMP NAME AND DEPT SAL JOB AND DEPTNAME IF THE EMO US WORJUBF AS SALESMAN OR MANAGER OR cLCERK IN ACCOUNTING OR SALES DEPT.
+
+    SELECT ENAME,SAL,E1.DEPTNO,JOB,DNAME
+    FROM EMP E1 INNER JOIN DEPT D1
+   ON E1.DEPTNO=D1.DEPTNO
+   WHERE JOB IN ('SALESMAN','MANAGER','CLERK')AND DNAME IN ('SALES','ACCOUNTING');
